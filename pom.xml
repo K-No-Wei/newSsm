@@ -8,6 +8,12 @@
   <name>newSsm Maven Webapp</name>
 
   <dependencies>
+    <!--lombok-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.16.22</version>
+    </dependency>
     <!--junit4-->
     <dependency>
       <groupId>junit</groupId>

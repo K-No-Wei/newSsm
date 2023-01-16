@@ -16,17 +16,18 @@
 
     <!--Spring 整合mybatis-->
     <!--配置连接池-->
+    <context:property-placeholder location="classpath*:db.properties"/>
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/learn?serverTimezone=UTC"/>
-        <property name="user" value="root"/>
-        <property name="password" value="1234"/>
+        <property name="driverClass" value="${mysql.driver}"/>
+        <property name="jdbcUrl" value="${mysql.url}"/>
+        <property name="user" value="${mysql.username}"/>
+        <property name="password" value="${mysql.password}"/>
     </bean>
 
     <!--sql工厂-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <!--<property name="mapperLocations" value="classpath:mapper/*.mapper"/>-->
+        <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
         <!--<property name="typeAliasesPackage" value="cn.knowei.ssm.bean"/>-->
     </bean>
 

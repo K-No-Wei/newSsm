@@ -6,21 +6,34 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 /**
- * @Author: knowei
- * @Description:
- * @Date: Create in 19:18 2023/1/6
- */
-// @Mapper
+* @author zheng
+* @description 针对表【user】的数据库操作Mapper
+* @createDate 2023-01-08 18:25:05
+* @Entity generator.domain.User
+*/
 public interface UserMapper {
+
+    int deleteByPrimaryKey(Long id);
+
+    int insert(User record);
+
+    int insertSelective(User record);
+
+    User selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(User record);
+
+    int updateByPrimaryKey(User record);
+
     @Select("select * from user")
     List<User> findAll();
 
-    @Insert("insert user(name,gender,email) values(#{name},#{gender},#{email})")
-    void insert(User user);
-
     @Update("update user set gender=#{gender},email=#{email} where name=#{name}")
-    void update(User user);
+    void update(cn.knowei.ssm.bean.User user);
 
     @Delete("delete from user where id=#{id}")
     void delete(Integer id);
+
+    User findOne(@Param("name")String name, @Param("gender")String gender, @Param("email") String email);
+
 }

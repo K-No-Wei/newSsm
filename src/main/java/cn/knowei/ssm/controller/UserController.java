@@ -1,6 +1,7 @@
 package cn.knowei.ssm.controller;
 
 import cn.knowei.ssm.bean.User;
+import cn.knowei.ssm.common.domain.Result;
 import cn.knowei.ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,8 @@ import java.util.List;
  * @Description:
  * @Date: Create in 19:41 2023/1/6
  */
-@Controller
+// @Controller
+@RestController
 public class UserController {
     @Autowired
     private UserService userService;
@@ -46,5 +48,11 @@ public class UserController {
     public String delete(@PathVariable("id") Integer id){
         userService.delete(id);
         return "success";
+    }
+
+    @RequestMapping("findOne")
+    public Result findOne(String name, String gender, String email){
+        User user = userService.findOne(name, gender, email);
+        return Result.success().data("user", user);
     }
 }
